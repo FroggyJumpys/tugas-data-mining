@@ -81,3 +81,5 @@ Improvisasi berhasil meningkatkan Macro F1 dan mengubah delta sentimen menjadi p
 ## Paper Acuan
 
 > Agboola A.O., Ladoja K.T., Onifade O.F.W. (2026). *Movie Recommendation System with Sentiment Analysis Using Deep Learning Algorithms*. Egyptian Informatics Journal, 33, 100905.
+
+*file model .pt bisa diminta langsung dengan Muhammad Putra Ramadhan dikarenakan file size terlalu besar.*
