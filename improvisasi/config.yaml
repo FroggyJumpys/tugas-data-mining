@@ -1,0 +1,138 @@
+# ============================================================
+# Global Configuration — Improvement Experiment
+# Based on improvement-proposal.md (Section 8.4)
+# ============================================================
+
+# Paths (relative to project root)
+paths:
+  dataset_path: "../dataset"           # IMDb CSV + MovieLens .dat files
+  output_path: "."
+  models_path: "models"
+  logs_path: "logs"
+  results_path: "results"
+  sentiment_logs: "logs/sentiment_scores"
+
+# General
+general:
+  random_seed: 42
+  num_labels: 5
+  label_names:
+    - "Negative"
+    - "Slightly Negative"
+    - "Neutral"
+    - "Slightly Positive"
+    - "Positive"
+
+  # IMDb rating to label mapping
+  rating_to_label:
+    1: 0   # Negative
+    2: 0
+    3: 1   # Slightly Negative
+    4: 1
+    5: 2   # Neutral
+    6: 3   # Slightly Positive
+    7: 3
+    8: 4   # Positive
+    9: 4
+    10: 4
+
+# ============================================================
+# BERT Configuration
+# ============================================================
+bert:
+  model_name: "bert-base-uncased"
+  max_length: 256
+  batch_size: 16
+  epochs: 5
+  learning_rate: 2.0e-5
+  weight_decay: 0.01
+  warmup_steps: 100
+  early_stopping_patience: 3
+
+# ============================================================
+# Data Split
+# ============================================================
+data_split:
+  # BERT: 70/15/15 train/val/test (for grid search fairness)
+  bert_train_ratio: 0.70
+  bert_val_ratio: 0.15
+  bert_test_ratio: 0.15
+  # DeepFM: 60/20/20 train/val/test
+  deepfm_train_ratio: 0.60
+  deepfm_val_ratio: 0.20
+  deepfm_test_ratio: 0.20
+
+# ============================================================
+# Focal Loss Configuration
+# ============================================================
+focal_loss:
+  gamma_values: [1.0, 2.0, 3.0]   # Grid search range
+  alpha: 1.0                       # Uniform class weight
+  reduction: "mean"
+
+# ============================================================
+# EDA Augmentation Configuration
+# ============================================================
+eda:
+  alpha_sr: 0.1                    # 10% of words replaced with synonyms
+  target_classes: [1, 2, 3]        # Slightly Negative, Neutral, Slightly Positive
+  n_aug:                            # Number of augmented copies per sample
+    1: 2                            # Slightly Negative: 2x
+    2: 2                            # Neutral: 2x
+    3: 1                            # Slightly Positive: 1x
+  random_seed: 42
+
+# ============================================================
+# DeepFM Configuration
+# ============================================================
+deepfm:
+  embed_dim: 16
+  dnn_dims: [400, 400, 400]
+  dropout: 0.5
+  batch_size: 256
+  epochs: 10
+  learning_rate: 0.001
+  weight_decay: 0.0
+  early_stopping_patience: 3
+
+  # MovieLens binarization threshold
+  rating_threshold:
+    positive: 4   # rating >= 4 → 1
+    negative: 3   # rating <= 3 → 0
+
+# ============================================================
+# Experiment Conditions
+# ============================================================
+conditions:
+  A:
+    name: "Baseline"
+    loss: "CrossEntropy"
+    augmentation: false
+  B:
+    name: "CE + EDA"
+    loss: "CrossEntropy"
+    augmentation: true
+  C:
+    name: "Focal Loss"
+    loss: "FocalLoss"
+    augmentation: false
+  D:
+    name: "Focal Loss + EDA"
+    loss: "FocalLoss"
+    augmentation: true
+
+# ============================================================
+# Success Criteria
+# ============================================================
+success_criteria:
+  bert_macro_f1_target: 0.75
+  recall_minority_improvement: 0.05
+  deepfm_roc_auc_target: 0.8447
+
+  baseline_repro:
+    bert_accuracy: 0.7836
+    bert_macro_f1: 0.6342
+    bert_weighted_f1: 0.7785
+    deepfm_roc_auc_without: 0.8704
+    deepfm_roc_auc_with: 0.8697
+    deepfm_delta: -0.0007

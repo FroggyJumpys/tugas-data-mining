@@ -1,0 +1,31 @@
+============================================================
+BERT SENTIMENT CLASSIFICATION — CONDITION D
+============================================================
+
+Configuration:
+  - Condition: D (Full Combination)
+  - Loss: FocalLoss(gamma=3.0)
+  - Augmentation: EDA Synonym Replacement
+  - EDA target classes: [1, 2, 3]
+  - EDA alpha_sr: 0.1
+  - EDA n_aug: {1: 2, 2: 2, 3: 1}
+  - Best gamma (grid search): 3.0
+  - Seed: 42
+  - Generated: 2026-06-12 17:51:21
+
+Overall Accuracy: 0.7870
+Macro F1-Score: 0.6433
+Weighted F1-Score: 0.7787
+
+------------------------------------------------------------
+                   precision    recall  f1-score   support
+
+         Negative     0.6918    0.7834    0.7348       808
+Slightly Negative     0.5577    0.3728    0.4468       389
+          Neutral     0.5812    0.4096    0.4805       874
+Slightly Positive     0.6512    0.6604    0.6557      1484
+         Positive     0.8767    0.9214    0.8985      5076
+
+         accuracy                         0.7870      8631
+        macro avg     0.6717    0.6295    0.6433      8631
+     weighted avg     0.7763    0.7870    0.7787      8631

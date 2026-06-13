@@ -1,0 +1,28 @@
+============================================================
+BERT SENTIMENT CLASSIFICATION — CONDITION C
+============================================================
+
+Configuration:
+  - Condition: C
+  - Loss: FocalLoss(gamma=2.0)
+  - Augmentation: None
+  - Best gamma (grid search): 2.0
+  - Seed: 42
+  - Generated: 2026-06-12 16:24:11
+
+Overall Accuracy: 0.7670
+Macro F1-Score: 0.6204
+Weighted F1-Score: 0.7625
+
+------------------------------------------------------------
+                   precision    recall  f1-score   support
+
+         Negative     0.7725    0.7104    0.7402       808
+Slightly Negative     0.4442    0.4396    0.4419       389
+          Neutral     0.4374    0.3318    0.3774       874
+Slightly Positive     0.6194    0.6920    0.6537      1484
+         Positive     0.8796    0.8980    0.8887      5076
+
+         accuracy                         0.7670      8631
+        macro avg     0.6306    0.6144    0.6204      8631
+     weighted avg     0.7604    0.7670    0.7625      8631

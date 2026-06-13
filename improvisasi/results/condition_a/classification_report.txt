@@ -1,0 +1,27 @@
+============================================================
+BERT SENTIMENT CLASSIFICATION — CONDITION A
+============================================================
+
+Configuration:
+  - Condition: A (Baseline)
+  - Loss: CrossEntropyLoss
+  - Augmentation: None
+  - Seed: 42
+  - Generated: 2026-06-12 09:48:09
+
+Overall Accuracy: 0.7700
+Macro F1-Score: 0.6272
+Weighted F1-Score: 0.7671
+
+------------------------------------------------------------
+                   precision    recall  f1-score   support
+
+         Negative     0.7801    0.6894    0.7319       808
+Slightly Negative     0.4180    0.4781    0.4460       389
+          Neutral     0.4713    0.3764    0.4186       874
+Slightly Positive     0.6276    0.6678    0.6471      1484
+         Positive     0.8822    0.9029    0.8924      5076
+
+         accuracy                         0.7700      8631
+        macro avg     0.6358    0.6229    0.6272      8631
+     weighted avg     0.7663    0.7700    0.7671      8631

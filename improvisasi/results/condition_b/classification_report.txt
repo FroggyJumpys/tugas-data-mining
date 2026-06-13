@@ -1,0 +1,30 @@
+============================================================
+BERT SENTIMENT CLASSIFICATION — CONDITION B
+============================================================
+
+Configuration:
+  - Condition: B
+  - Loss: CrossEntropyLoss
+  - Augmentation: EDA Synonym Replacement
+  - EDA target classes: [1, 2, 3]
+  - EDA alpha_sr: 0.1
+  - EDA n_aug: {1: 2, 2: 2, 3: 1}
+  - Seed: 42
+  - Generated: 2026-06-12 07:15:38
+
+Overall Accuracy: 0.7882
+Macro F1-Score: 0.6544
+Weighted F1-Score: 0.7825
+
+------------------------------------------------------------
+                   precision    recall  f1-score   support
+
+         Negative     0.6748    0.7859    0.7261       808
+Slightly Negative     0.6142    0.4010    0.4852       389
+          Neutral     0.5701    0.4371    0.4948       874
+Slightly Positive     0.6532    0.6853    0.6689      1484
+         Positive     0.8856    0.9088    0.8970      5076
+
+         accuracy                         0.7882      8631
+        macro avg     0.6796    0.6436    0.6544      8631
+     weighted avg     0.7817    0.7882    0.7825      8631

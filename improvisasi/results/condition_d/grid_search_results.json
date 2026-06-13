@@ -1,0 +1,44 @@
+{
+  "condition": "D",
+  "loss_type": "FocalLoss",
+  "augmentation": true,
+  "eda_config": {
+    "target_classes": [
+      1,
+      2,
+      3
+    ],
+    "n_aug": {
+      "1": 2,
+      "2": 2,
+      "3": 1
+    },
+    "alpha_sr": 0.1
+  },
+  "train_samples_before_aug": 40273,
+  "train_samples_after_aug": 58986,
+  "gamma_values": [
+    1.0,
+    2.0,
+    3.0
+  ],
+  "best_gamma": 3.0,
+  "selection_metric": "val_macro_f1",
+  "results": [
+    {
+      "gamma": 1.0,
+      "best_val_f1": 0.6480378676589882,
+      "best_epoch": 5
+    },
+    {
+      "gamma": 2.0,
+      "best_val_f1": 0.6515368437339302,
+      "best_epoch": 5
+    },
+    {
+      "gamma": 3.0,
+      "best_val_f1": 0.6516049409345684,
+      "best_epoch": 5
+    }
+  ]
+}
